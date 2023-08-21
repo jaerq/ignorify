@@ -30,6 +30,22 @@ if __name__ == "__main__":
     main()
 ```
 
+### Command-Line Interface (CLI)
+
+You can also use the pygnore library from the command line. To filter files and directories using the CLI, run the following command:
+
+```bash
+pygnore-cli --root <root_path> --ignore-file <ignore_file>
+```
+
+Replace `<root_path>` with the desired root path for filtering (default is the current directory), and `<ignore_file>` with the name of the ignore file (default is `.gitignore`).
+
+For example, to filter files in the current directory using an ignore file named `.myignore`, you can use the following command:
+
+```bash
+pygnore-cli --ignore-file .myignore
+```
+
 ## Documentation
 
 You can find more information in the [documentation](https://github.com/jaerq/pygnore/docs).

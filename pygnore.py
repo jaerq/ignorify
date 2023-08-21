@@ -1,6 +1,7 @@
 import os
 import fnmatch
 import logging
+import argparse
 
 class PygnoreError(Exception):
     pass
@@ -32,10 +33,14 @@ class Pygnore:
         return filtered_items
 
 def main():
+    parser = argparse.ArgumentParser(description="Filter files and directories using pygnore.")
+    parser.add_argument("--root", default=".", help="Root path for filtering (default: current directory)")
+    parser.add_argument("--ignore-file", default=".gitignore", help="Ignore file name (default: .gitignore)")
+    args = parser.parse_args()
+
     logging.basicConfig(level=logging.INFO)
 
-    custom_ignore_file = ".myignore"  # Change to your desired ignore file name
-    pygnore = Pygnore(ignore_file=custom_ignore_file)
+    pygnore = Pygnore(root_path=args.root, ignore_file=args.ignore_file)
     filtered_items = pygnore.filter()
 
     print("Filtered files and directories:")
