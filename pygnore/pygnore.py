@@ -26,13 +26,13 @@ class Pygnore:
 
     def filter(self):
         filtered_items = []
-        for root, dirs, files in os.walk(self.root_path):
+        for root, dirs, files in os.walk(self.root_path, topdown=True):
             dirs[:] = [d for d in dirs if not self._matches_any_pattern(d)]
             files = [f for f in files if not self._matches_any_pattern(f)]
             filtered_items.extend(os.path.join(root, item) for item in dirs + files)
         return filtered_items
 
-def main():
+if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Filter files and directories using pygnore.")
     parser.add_argument("--root", default=".", help="Root path for filtering (default: current directory)")
     parser.add_argument("--ignore-file", default=".gitignore", help="Ignore file name (default: .gitignore)")
@@ -42,10 +42,3 @@ def main():
 
     pygnore = Pygnore(root_path=args.root, ignore_file=args.ignore_file)
     filtered_items = pygnore.filter()
-
-    print("Filtered files and directories:")
-    for item in filtered_items:
-        print(item)
-
-if __name__ == "__main__":
-    main()
