@@ -4,7 +4,7 @@ with open("README.md", "r") as readme_file:
     long_description = readme_file.read()
 
 setup(
-    name="pygnore",
+    name="ignorify",
     version="0.1.0",
     author="Jaer Quijivix-Sweeney",
     author_email="jaer.q@protonmail.com",
@@ -13,7 +13,7 @@ setup(
     license_files=("LICENSE"),
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/jaerq/pygnore",
+    url="https://github.com/jaerq/ignorify",
     packages=find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",

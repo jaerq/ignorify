@@ -3,10 +3,10 @@ import fnmatch
 import logging
 import argparse
 
-class PygnoreError(Exception):
+class IgnorifyError(Exception):
     pass
 
-class Pygnore:
+class Ignorify:
     def __init__(self, root_path=".", ignore_file=".gitignore"):
         self.root_path = os.path.abspath(root_path)
         self.ignore_file = os.path.join(self.root_path, ignore_file)
@@ -33,12 +33,12 @@ class Pygnore:
         return filtered_items
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Filter files and directories using pygnore.")
+    parser = argparse.ArgumentParser(description="Filter files and directories using ignorify.")
     parser.add_argument("--root", default=".", help="Root path for filtering (default: current directory)")
     parser.add_argument("--ignore-file", default=".gitignore", help="Ignore file name (default: .gitignore)")
     args = parser.parse_args()
 
     logging.basicConfig(level=logging.INFO)
 
-    pygnore = Pygnore(root_path=args.root, ignore_file=args.ignore_file)
-    filtered_items = pygnore.filter()
+    ignorify = Ignorify(root_path=args.root, ignore_file=args.ignore_file)
+    filtered_items = ignorify.filter()

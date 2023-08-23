@@ -1,8 +1,8 @@
 import unittest
 import os
-from pygnore.pygnore import Pygnore
+from ignorify.ignorify import Ignorify
 
-class TestPygnore(unittest.TestCase):
+class TestIgnorify(unittest.TestCase):
 
     def setUp(self):
         # Create a temporary directory for testing
@@ -21,8 +21,8 @@ class TestPygnore(unittest.TestCase):
     def test_filter_with_custom_ignore_file(self):
         open(os.path.join(self.temp_dir, ".gitignore"), "w").close()
 
-        pygnore = Pygnore(root_path=self.temp_dir, ignore_file=".gitignore")
-        filtered_items = pygnore.filter()
+        ignorify = Ignorify(root_path=self.temp_dir, ignore_file=".gitignore")
+        filtered_items = ignorify.filter()
 
         expected_items = [".gitignore"]
 
@@ -33,8 +33,8 @@ class TestPygnore(unittest.TestCase):
     def test_filter_with_default_ignore_file(self):
         open(os.path.join(self.temp_dir, "file.txt"), "w").close()
 
-        pygnore = Pygnore(root_path=self.temp_dir)
-        filtered_items = pygnore.filter()
+        ignorify = Ignorify(root_path=self.temp_dir)
+        filtered_items = ignorify.filter()
 
         expected_items = ["file.txt"]
 
@@ -45,8 +45,8 @@ class TestPygnore(unittest.TestCase):
     def test_filter_with_ignore_patterns(self):
         os.makedirs(os.path.join(self.temp_dir, "subdir"))
 
-        pygnore = Pygnore(root_path=self.temp_dir, ignore_file=".ignore_patterns")
-        filtered_items = pygnore.filter()
+        ignorify = Ignorify(root_path=self.temp_dir, ignore_file=".ignore_patterns")
+        filtered_items = ignorify.filter()
 
         expected_items = ["subdir"]
 
